@@ -1,14 +1,20 @@
-import sqlite3
 from pymongo import MongoClient
-connection = sqlite3.connect("pokemon.sqlite")
-con = connection.cursor()
-
 mongoClient = MongoClient("mongodb://localhost/pokemon")
 pokemonDB = mongoClient['pokemondb']
 pokemonColl = pokemonDB['pokemon_data']
 
-pikachu = pokemonColl.find_one({"name": "Pikachu"})
+pikachuQuery = pokemonColl.find_one({"name": "Pikachu"})
+for i, value in (pikachuQuery):
+    print(pikachuQuery)
 
-def some_function(pokemonid):
-   return pokemonColl.find_one({"pokedex_number":pokemonid})
+attack = {"attack": {"$gt": 150}}
+outcome = pokemonColl.find(attack)
+print("Pokemon with attack greater than 150: ")
+for i,value in (attack):
+    print(outcome)
+
+overgrow = {'abilities': 'Overgrow'}
+pokemon_overgrow = pokemonColl.find(overgrow)
+for i, value in (pokemon_overgrow):
+    print(pokemon_overgrow)
 

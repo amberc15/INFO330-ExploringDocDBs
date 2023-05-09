@@ -18,6 +18,7 @@ getSpeed = con.execute("SELECT speed from pokemon").fetchone()
 sp_attack = con.execute("SELECT sp_attack from pokemon").fetchone()
 sp_defense = con.execute("SELECT sp_defense from pokemon").fetchone()
 newList = [getName, getNumber, firstType, secondType, getHp, getAttack, getDefense, getSpeed, sp_attack, sp_defense]
+
 for i in range(1, 802):
     rows = con.execute("SELECT * FROM pokemon WHERE id = " + str(i)).fetchone()
     typeOne = con.execute("SELECT * FROM type AS T LEFT OUTER JOIN pokemon_type AS PT ON T.id = PT.type_id WHERE pokemon_id = " 
